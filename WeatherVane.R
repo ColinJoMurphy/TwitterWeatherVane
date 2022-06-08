@@ -40,6 +40,12 @@ types <- c('Sunny',
 
 weatherkey <- tibble(keywords, types)
 
+auth <- rtweet_bot(api_key = key_get('WEATHERVANE_TWITTER_API_KEY'),
+                   api_secret = key_get('WEATHERVANE_TWITTER_API_SECRET'),
+                   access_token = key_get('WEATHERVANE_TWITTER_ACCESS_TOKEN'),
+                   access_secret = key_get('WEATHERVANE_TWITTER_ACCESS_SECRET'))
+auth_as(auth)
+
 t <- search_tweets(q = 'weather', n = 50, type = 'recent', include_rts = F, geocode = '38.575764,-121.478851,25mi')
 
 today <- Sys.Date()
