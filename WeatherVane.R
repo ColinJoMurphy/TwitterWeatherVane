@@ -40,28 +40,67 @@ types <- c('Sunny',
 
 weatherkey <- tibble(keywords, types)
 
-
-t <- search_tweets('weather', n = 40, include_rts = F, geocode = '38.575764,-121.478851,25mi')
+t <- search_tweets(q = 'weather', n = 50, type = 'recent', include_rts = F, geocode = '38.575764,-121.478851,25mi')
 
 today <- Sys.Date()
-textdate <- format(today, '%A, %B %d') %>% tolower()
+textdate <- format(today, '%A, %B%e') %>% tolower() %>% stri_replace( '', fixed = ',')
 
-t %>% 
-  unnest_tweets(word, text, drop = FALSE) %>%
-  unnest_ngrams(grams, text, drop = FALSE) %>%
-  group_by(user_id, status_id) %>%
+test <- t %>% 
+  tibble() %>%
+  unnest_tweets(word, full_text, drop = FALSE) %>%
+  unnest_ngrams(grams, full_text, drop = FALSE) %>%
+  group_by(id_str) %>%
   filter(any(word == 'today') | any(grams == textdate)) %>%
   filter(strftime(created_at, format = '%Y-%m-%d') == Sys.Date()) %>%
   ungroup() %>%
   mutate(word = ifelse('partly' %in% word & word == 'cloudy',
                        'partly',
                        word)) %>%
-  inner_join(weatherkey, by = c('word' = 'keywords'), keep = T) %>%
+  inner_join(weatherkey, by = c('word' = 'keywords'), keep = T) 
+  
+# Find and format high temps  
+highs <- test %>%
+  filter(grepl('^high of', grams)) %>%
+  select(grams) %>% 
+  unnest_tokens(char, grams) %>%
+  filter(grepl('^[0-9]', char)) %>% 
+  deframe() %>%
+  stri_replace_all_regex('f', '') %>%
+  unique() %>%
+  as.numeric() %>%
+  sort() %>%
+  as.character() %>%
+  stri_c('f') %>%
+  stri_c(collapse = ' or ')
+
+# Find and format low temps
+lows <- test %>%
+  filter(grepl('^low of', grams)) %>%
+  select(grams) %>% 
+  unnest_tokens(char, grams) %>%
+  filter(grepl('^[0-9]', char)) %>%
+  deframe() %>%
+  stri_replace_all_regex('f', '') %>%
+  unique() %>%
+  as.numeric() %>%
+  sort() %>%
+  as.character() %>%
+  stri_c('f') %>% 
+  stri_c(collapse = ' or ')
+  
+# Generate message  
+test %>%  
   select(types) %>%
   unique() %>%
   deframe() %>%
   stri_c( collapse = ' or ') %>%
-  paste0('Twitter says today\'s weather is ', .) %>%
+  paste0('Twitter says Sacramento area\'s weather today is ',
+         .,
+         ', with possible highs of ',
+         highs,
+         ' and possible lows of ',
+         lows,
+         '.') %>%
   print()
  
 
