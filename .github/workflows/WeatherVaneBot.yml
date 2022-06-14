@@ -1,0 +1,31 @@
+name: WeatherVaneBot
+
+# Schedule to run every day at 11am PST (18:00 UTC)
+on:
+  schedule: 
+    - cron: '0 18 * * *'
+
+# Define job
+jobs:
+
+  # Define OS
+  WeatherVaneBot-post:
+    runs-on: windows-latest
+    
+    # Set Twitter credentials stored in repo secrets as environment variables
+    env: 
+      WEATHER_VANE_BOT_API_KEY: ${{ secrets.WEATHER_VANE_BOT_API_KEY }}
+      WEATHER_VANE_BOT_API_SECRET: ${{ secrets.WEATHER_VANE_BOT_API_SECRET }}
+      WEATHER_VANE_BOT_ACCESS_KEY: ${{ secrets.WEATHER_VANE_BOT_ACCESS_KEY }}
+      WEATHER_VANE_BOT_ACCESS_SECRET: ${{ secrets.WEATHER_VANE_BOT_ACCESS_SECRET }}
+    # List steps to be taken
+    steps:
+      - uses: actions/checkout@v3
+      - uses: r-lib/actions/setup-r@master
+      - name: Install rtweet package
+        run: Rscript -e 'install.packages("rtweet", repo = "https://ropensci.r-universe.dev", dependecies = TRUE)
+      - name: Install CRAN packages
+        run: Rscript -e 'install.packages(pkgs = c("tibble","dplyr", "stringi", "tidytext"), dependecies = TRUE)'
+      - name: Create and post tweet
+        run: Rscript WeatherVane.R
+
