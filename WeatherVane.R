@@ -51,7 +51,7 @@ t <- search_tweets(q = 'weather', n = 50, type = 'recent', include_rts = F, geoc
 today <- Sys.Date()
 textdate <- format(today, '%A, %B%e') %>% tolower() %>% stri_replace( '', fixed = ',')
 
-test <- t %>% 
+weather <- t %>% 
   tibble() %>%
   unnest_tweets(word, full_text, drop = FALSE) %>%
   unnest_ngrams(grams, full_text, drop = FALSE) %>%
@@ -65,7 +65,7 @@ test <- t %>%
   inner_join(weatherkey, by = c('word' = 'keywords'), keep = T) 
   
 # Find and format high temps  
-highs <- test %>%
+highs <- weather %>%
   filter(grepl('^high of', grams)) %>%
   select(grams) %>% 
   unnest_tokens(char, grams) %>%
@@ -80,7 +80,7 @@ highs <- test %>%
   stri_c(collapse = ' or ')
 
 # Find and format low temps
-lows <- test %>%
+lows <- weather %>%
   filter(grepl('^low of', grams)) %>%
   select(grams) %>% 
   unnest_tokens(char, grams) %>%
@@ -95,7 +95,7 @@ lows <- test %>%
   stri_c(collapse = ' or ')
   
 # Generate message  
-test %>%  
+message <- weather %>%  
   select(types) %>%
   unique() %>%
   deframe() %>%
@@ -106,12 +106,11 @@ test %>%
          highs,
          ' and possible lows of ',
          lows,
-         '.') %>%
-  print()
- 
+         '.') 
 
 
 
+post_tweet(status = message)
 
 
 
