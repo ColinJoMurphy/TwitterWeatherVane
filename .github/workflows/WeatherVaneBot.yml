@@ -20,6 +20,7 @@ jobs:
       WEATHER_VANE_BOT_API_SECRET: ${{ secrets.WEATHER_VANE_BOT_API_SECRET }}
       WEATHER_VANE_BOT_ACCESS_KEY: ${{ secrets.WEATHER_VANE_BOT_ACCESS_KEY }}
       WEATHER_VANE_BOT_ACCESS_SECRET: ${{ secrets.WEATHER_VANE_BOT_ACCESS_SECRET }}
+      NOT_CRAN: false
     # List steps to be taken
     steps:
       - uses: actions/checkout@v3
