@@ -2,6 +2,7 @@
 library(rtweet)
 library(tidytext)
 library(dplyr)
+library(tibble)
 library(stringi)
 
 # Set weather word mappings
@@ -38,7 +39,7 @@ types <- c('Sunny',
            'Thunder and Lighting'
            )
 
-weatherkey <- data.frame(keywords, types) %>% as_tibble()
+weatherkey <- tibble(keywords, types)
 
 # Set up access to bot account
 auth <- rtweet_bot(api_key = Sys.getenv('WEATHER_VANE_BOT_API_KEY'),
@@ -56,7 +57,7 @@ textdate <- format(today, '%A, %B%e') %>% tolower() %>% stri_replace( '', fixed 
 
 # Pull tweets and analyze to find the weather
 weather <- t %>% 
-  as_tibble() %>%
+  tibble() %>%
   unnest_tweets(word, full_text, drop = FALSE) %>%
   unnest_ngrams(grams, full_text, drop = FALSE) %>%
   group_by(id_str) %>%
