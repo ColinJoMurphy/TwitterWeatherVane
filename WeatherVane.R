@@ -45,7 +45,7 @@ weatherkey <- tibble(keywords, types)
 # Set up access to bot account
 auth <- rtweet_bot(api_key = Sys.getenv('WEATHERVANE_TWITTER_API_KEY'),
                    api_secret = Sys.getenv('WEATHERVANE_TWITTER_API_SECRET'),
-                   access_token = Sys.getenv('WEATHERVANE_TWITTER_ACCESS_TOKEN'),
+                   access_token = Sys.getenv('WEATHERVANE_TWITTER_ACCESS_KEY'),
                    access_secret = Sys.getenv('WEATHERVANE_TWITTER_ACCESS_SECRET'))
 auth_as(auth)
 
