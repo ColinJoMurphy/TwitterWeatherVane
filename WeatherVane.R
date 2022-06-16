@@ -43,15 +43,11 @@ types <- c('Sunny',
 weatherkey <- tibble(keywords, types)
 
 # Set up access to bot account
-auth <- rtweet_bot(api_key = Sys.getenv('WEATHERVANE_TWITTER_API_KEY'),
-                   api_secret = Sys.getenv('WEATHERVANE_TWITTER_API_SECRET'),
-                   access_token = Sys.getenv('WEATHERVANE_TWITTER_ACCESS_KEY'),
-                   access_secret = Sys.getenv('WEATHERVANE_TWITTER_ACCESS_SECRET'))
-print('test.5')
-
+auth <- rtweet_bot(api_key = Sys.getenv('WEATHER_VANE_BOT_API_KEY'),
+                   api_secret = Sys.getenv('WEATHER_VANE_BOT_API_SECRET'),
+                   access_token = Sys.getenv('WEATHER_VANE_BOT_ACCESS_KEY'),
+                   access_secret = Sys.getenv('WEATHER_VANE_BOT_ACCESS_SECRET'))
 auth_as(auth)
-
-print('test1')
 
 # Pull tweets related to weather and are from Sacramento, CA area
 t <- search_tweets(q = 'weather', n = 50, type = 'recent', include_rts = F, geocode = '38.575764,-121.478851,25mi')
