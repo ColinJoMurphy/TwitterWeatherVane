@@ -47,10 +47,16 @@ auth <- rtweet_bot(api_key = Sys.getenv('WEATHERVANE_TWITTER_API_KEY'),
                    api_secret = Sys.getenv('WEATHERVANE_TWITTER_API_SECRET'),
                    access_token = Sys.getenv('WEATHERVANE_TWITTER_ACCESS_TOKEN'),
                    access_secret = Sys.getenv('WEATHERVANE_TWITTER_ACCESS_SECRET'))
+print('test.5')
+
 auth_as(auth)
+
+print('test1')
 
 # Pull tweets related to weather and are from Sacramento, CA area
 t <- search_tweets(q = 'weather', n = 50, type = 'recent', include_rts = F, geocode = '38.575764,-121.478851,25mi')
+
+print('test2')
 
 # Get today's date and format
 today <- Sys.Date()
