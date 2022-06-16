@@ -52,8 +52,6 @@ auth_as(auth)
 # Pull tweets related to weather and are from Sacramento, CA area
 t <- search_tweets(q = 'weather', n = 50, type = 'recent', include_rts = F, geocode = '38.575764,-121.478851,25mi')
 
-print('test2')
-
 # Get today's date and format
 today <- Sys.Date()
 textdate <- format(today, '%A, %B%e') %>% tolower() %>% stri_replace( '', fixed = ',')
