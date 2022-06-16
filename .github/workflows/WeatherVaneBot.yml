@@ -28,7 +28,7 @@ jobs:
       - name: Install CRAN packages
         run: Rscript -e "install.packages(c('dplyr', 'tibble', 'stringi', 'httpuv', 'pak'), repos = 'https://cloud.r-project.org/', dependecies = TRUE)"
       - name: Install rtweet package
-        run: Rscript -e "pkg_install('ropensci/rtweet', dependecies = TRUE)"
+        run: Rscript -e "pak::pkg_install('ropensci/rtweet', dependecies = TRUE)"
       - name: Create and post tweet
         run: Rscript WeatherVane.R
 
