@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: r-lib/actions/setup-r@v2
       - name: Install CRAN packages
-        run: Rscript -e "install.packages(c('dplyr', 'httpuv', 'tibble', 'tidytext', 'stringi', 'pak'), repos = 'https://cloud.r-project.org/', dependecies = TRUE)"
+        run: Rscript -e "install.packages(c('dplyr', 'tibble', 'tidytext', 'stringi', 'pak'), repos = 'https://cloud.r-project.org/', dependecies = TRUE)"
       - name: Install rtweet package
         run: Rscript -e "pak::pkg_install('ropensci/rtweet')"
       - name: Create and post tweet
