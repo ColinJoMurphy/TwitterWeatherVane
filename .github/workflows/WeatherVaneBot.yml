@@ -20,13 +20,13 @@ jobs:
       WEATHER_VANE_BOT_API_SECRET: ${{ secrets.WEATHER_VANE_BOT_API_SECRET }}
       WEATHER_VANE_BOT_ACCESS_KEY: ${{ secrets.WEATHER_VANE_BOT_ACCESS_KEY }}
       WEATHER_VANE_BOT_ACCESS_SECRET: ${{ secrets.WEATHER_VANE_BOT_ACCESS_SECRET }}
-      NOT_CRAN: false
+      GITHUB_PAT: ${{ secrets.BOT_TOKEN }}
     # List steps to be taken
     steps:
       - uses: actions/checkout@v3
       - uses: r-lib/actions/setup-r@v2
       - name: Install CRAN packages
-        run: Rscript -e 'install.packages("dplyr", dependecies = TRUE)'
+        run: Rscript -e 'install.packages("dplyr", repo = c('CRANdependecies = TRUE)'
          
          #Rscript -e 'install.packages("tidytext", dependecies = TRUE)'
          
