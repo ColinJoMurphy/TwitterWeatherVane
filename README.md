@@ -1,3 +1,5 @@
+[![WeatherVaneBot](https://github.com/ColinJoMurphy/TwitterWeatherVane/actions/workflows/WeatherVaneBot.yml/badge.svg)](https://github.com/ColinJoMurphy/TwitterWeatherVane/actions/workflows/WeatherVaneBot.yml)
+
 # Tell The Weather With Twitter!
 
 This is a web app that uses data from twitter to report the daily weather. The weather is posted to a twitter account [here](https://twitter.com/tweet_vane). 
