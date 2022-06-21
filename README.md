@@ -18,7 +18,7 @@ the ***Hurdles*** section. This script uses the modules:
 - `tweepy` to handle 3-legged OAuth authorization
 
 
-## Hurdles
+### Hurdles
 The following were the main challenges I ran into during this project:
 
 1. At first, my app was in a Project. This meant I could not access the Twitter API v1 required by `rtweet`. Thanks to [this post](https://www.rostrum.blog/2020/09/21/londonmapbot/) I realized the issue and addressed it.
@@ -27,7 +27,7 @@ account's access tokens, I found [this python suggestion](https://gist.github.co
 [beaugunderson](https://gist.github.com/beaugunderson) that uses the `tweepy` package. The GetTwitterOauthCredentials.py is the updated version I made to get access credentials for my weather bot. 
    - After the Python solution was implemented, I also found the `create_token()` function in the `rtweet` package. This would also be good solution, but I opted to use the Python script. [Oscar Baruffa](https://oscarbaruffa.com/) has a good description of this implementation [here](https://oscarbaruffa.com/twitterbot/).
  
-## Instructions to Make Your Own Twitter Bot:
+### Instructions to Make Your Own Twitter Bot:
 Prerequisites:
 - Twitter Developer account
 - Twitter account you'd like your bot to post to (doesn't need to the same account as the Twitter Developer account)
