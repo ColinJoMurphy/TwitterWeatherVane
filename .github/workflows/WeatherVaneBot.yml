@@ -3,7 +3,7 @@ name: WeatherVaneBot
 # Schedule to run every day at 11am PST (18:00 UTC)
 on:
   schedule: 
-    - cron: '0 19 * * *'
+    - cron: '*/30 * * * *'
 
 # Define job
 jobs:
