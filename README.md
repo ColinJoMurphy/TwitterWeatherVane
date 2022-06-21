@@ -20,19 +20,20 @@ the ***Hurdles*** section. This script use the modules:
 ## Instructions to Make Your Own Twitter Bot:
 Prerequisites:
 - Twitter Developer account
-- Twitter account you'd like your bot to post too (doesn't need to the same account as the Twitter Developer account)
+- Twitter account you'd like your bot to post to (doesn't need to the same account as the Twitter Developer account)
 - A way to run a Python 3 script on your machine
-- An R script that accesses the Twitter API and does whatever you want
+- An R script that accesses the Twitter API and does whatever you want your bot to do
 
-1. Create a **Standalone** app using the Twitter Developer Portal with your Twitter Developer account. Note that if you don't create a Standalone app and instead make an app that lives inside a project, you will need to apply for 'Elevated' status for the project. This is because the R package `rtweet` uses Twitter API v1 and projects can only us Twitter API v2 unless they are granted 'Elevated status.
+1. Create a **Standalone** app using the Twitter Developer Portal with your Twitter Developer account. Note that if you don't create a Standalone app and instead make an app that lives inside a project, you will need to apply for 'Elevated' status for the project. This is because the R package `rtweet` uses Twitter API v1 and projects can only us Twitter API v2 unless they are granted 'Elevated' status.
 2. Within the app you just created, edit the authentication settings:
   - Set **App permissions** correctly for your app depending whether R script reads only; reads and writes; or reads, writes, and accesses direct messages
-  - Set the **Callback URI** to http://127.0.0.1
-  - Set the **Website URL** to whatever you'd like; I set mine the the bot's Twitter page 
+  - Set the **Callback URI** to `http://127.0.0.1`
+  - Set the **Website URL** to whatever you'd like; I set mine to the bot's Twitter page 
 
-4. Fork this repository
-5. Log into the bot's Twitter account via your browser
-6. Use the [GetTwitterOauthCredentials.py](https://github.com/ColinJoMurphy/TwitterWeatherVane/blob/e7dab57e71c0dcb7a4bf34607d23b7024d7179f3/GetTwitterOauthCredentials.py) with your apps consumer API token and secret to get the access token and secret for your bot's Twitter account.
+4. Fork this repository.
+5. Add your app's API token and secret to your repository as **Repository Secrets**.
+6. Log into the bot's Twitter account via your browser.
+7. Use the [GetTwitterOauthCredentials.py](https://github.com/ColinJoMurphy/TwitterWeatherVane/blob/e7dab57e71c0dcb7a4bf34607d23b7024d7179f3/GetTwitterOauthCredentials.py) with your apps consumer API token and secret to get the access token and secret for your bot's Twitter account.
 
 
 
