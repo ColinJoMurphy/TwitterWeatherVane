@@ -1,7 +1,6 @@
 # Load required packages
 library(rtweet)
 library(tidytext)
-library(httpuv)
 library(dplyr)
 library(tibble)
 library(stringi)
