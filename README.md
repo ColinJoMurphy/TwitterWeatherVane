@@ -1,3 +1,4 @@
+[![WeatherVaneBot](https://github.com/ColinJoMurphy/TwitterWeatherVane/actions/workflows/WeatherVaneBot.yml/badge.svg)](https://github.com/ColinJoMurphy/TwitterWeatherVane/actions/workflows/WeatherVaneBot.yml)
 
 # Twitter Weather Vane
 
